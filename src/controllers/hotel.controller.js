@@ -12,7 +12,7 @@ const createHotel = async (req, res) => {
             description,
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "Hotel created successfully",
             hotel,
         });
@@ -24,7 +24,7 @@ const createHotel = async (req, res) => {
             });
         }
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to create hotel",
             error: error.message,
         });
@@ -35,11 +35,11 @@ const getHotels = async (req, res) => {
     try {
         const hotels = await Hotel.find();
 
-        res.status(200).json({
+        return res.status(200).json({
             hotels,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to fetch hotels",
             error: error.message,
         });
@@ -64,11 +64,11 @@ const getHotelById = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             hotel,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to fetch hotel",
             error: error.message,
         });
@@ -112,7 +112,7 @@ const updateHotel = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Hotel updated successfully",
             hotel,
         });
@@ -124,7 +124,7 @@ const updateHotel = async (req, res) => {
             });
         }
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to update hotel",
             error: error.message,
         });
@@ -149,11 +149,11 @@ const deleteHotel = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Hotel deleted successfully",
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to delete hotel",
             error: error.message,
         });

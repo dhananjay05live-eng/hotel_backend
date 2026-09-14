@@ -28,7 +28,7 @@ const createRoom = async (req, res) => {
             capacity,
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "Room created successfully",
             room,
         });
@@ -40,7 +40,7 @@ const createRoom = async (req, res) => {
             });
         }
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to create room",
             error: error.message,
         });
@@ -51,11 +51,11 @@ const getRooms = async (req, res) => {
     try {
         const rooms = await Room.find();
 
-        res.status(200).json({
+        return res.status(200).json({
             rooms,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to fetch rooms",
             error: error.message,
         });
@@ -80,11 +80,11 @@ const getRoomById = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             room,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to fetch room",
             error: error.message,
         });
@@ -150,7 +150,7 @@ const updateRoom = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Room updated successfully",
             room,
         });
@@ -162,7 +162,7 @@ const updateRoom = async (req, res) => {
             });
         }
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to update room",
             error: error.message,
         });
@@ -187,11 +187,11 @@ const deleteRoom = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Room deleted successfully",
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Failed to delete room",
             error: error.message,
         });
