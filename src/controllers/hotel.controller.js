@@ -5,6 +5,10 @@ const createHotel = async (req, res) => {
     try {
         const { name, location, address, description } = req.body;
 
+        const alreadyCreated = await Hotel.findOne({ name, location, address });
+        if (alreadyCreated) {
+            return res.status(409).json({ message: "hotel already exists" });
+        }
         const hotel = await Hotel.create({
             name,
             location,

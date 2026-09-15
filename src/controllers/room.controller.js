@@ -20,6 +20,17 @@ const createRoom = async (req, res) => {
             });
         }
 
+        const alreadyCreated = await Room.findOne({
+            hotel,
+            roomNumber,
+        });
+
+        if (alreadyCreated) {
+            return res.status(409).json({
+                message: "Room already exists in this hotel",
+            });
+        }
+
         const room = await Room.create({
             hotel,
             roomNumber,
